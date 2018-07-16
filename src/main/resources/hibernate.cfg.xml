@@ -16,6 +16,7 @@
         <!-- List of XML mapping files -->
         <mapping resource="User.hbm.xml"/>
         <mapping class="Employee"/>
+        <mapping resource="TableAllClasses.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

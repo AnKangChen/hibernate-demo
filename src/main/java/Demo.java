@@ -1,12 +1,15 @@
+import inherit.Table1ForAllClasses;
+import inherit.Table2ForAllClasses;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class Demo {
-    public  SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Before
     public void before() {
@@ -43,5 +46,25 @@ public class Demo {
         sessionFactory.close();
     }
 
+    @Test
+    public void testTableAllClasses(){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Table1ForAllClasses table1 = new Table1ForAllClasses();
+        Table2ForAllClasses table2 =new Table2ForAllClasses();
+        table1.bonus = "table1";
+        table1.name = "table1";
+        //table1.id = 1;
+
+        table2.salary = "salary";
+        table2.name = "table2";
+        //table2.id = 2;
+        session.save(table1);
+        session.save(table2);
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
+    }
 }
 

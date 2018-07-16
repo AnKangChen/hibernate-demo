@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="inherit.TableAllClasses" table="user1" discriminator-value="father-tbl">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <discriminator column="type"/>
+        <property name="name" column="name"/>
+
+        <subclass name="inhert.Table1ForAllClasses" discriminator-value="child1">
+            <property name="bonus" column="bonus"/>
+        </subclass>
+
+        <subclass name="inhert.Table2ForAllClasses" discriminator-value="child2">
+            <property name="salary" column="salary"/>
+
+        </subclass>
+    </class>
+</hibernate-mapping>
